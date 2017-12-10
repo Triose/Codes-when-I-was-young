@@ -1,0 +1,31 @@
+14 4
+Outlook Temperature Humidity Windy
+SUNNY          HOT       HIGH         WEAK   
+SUNNY          HOT       HIGH         STRONG  
+OVERCAST       HOT       HIGH         WEAK    
+RAIN           MILD      HIGH         WEAK    
+RAIN           COOL      NORMAL       WEAK    
+RAIN           COOL      NORMAL       STRONG  
+OVERCAST       COOL      NORMAL       STRONG  
+SUNNY          MILD      HIGH         WEAK    
+SUNNY          COOL      NORMAL       WEAK    
+RAIN           MILD      NORMAL       WEAK    
+SUNNY          MILD      NORMAL       STRONG  
+OVERCAST       MILD      HIGH         STRONG  
+OVERCAST       HOT       NORMAL       WEAK    
+RAIN           MILD      HIGH         STRONG  
+
+no
+no
+yes
+yes
+yes
+no
+yes
+no
+yes
+yes
+yes
+yes
+yes
+no
