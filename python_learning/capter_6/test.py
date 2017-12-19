@@ -41,7 +41,7 @@ print(); print()
 #但是，就像C一样，这样就会被改变
 #可以理解为，形参和实参都是引用变量，它们都引用同一个对象，通过引用变量能够改变对象
 def change(ns):
-    ns[0] = 'Mr.Gumby'
+    ns[0] = 'Mr.Gumby'                  #这是替换，不是修改
     return 
 names = ['Mrs. Entity', 'Mrs. Thing']
 #   change(names)
@@ -84,6 +84,8 @@ for key1 in dic.keys():
 
 #今天就到这，我需要复习前面的东西了 不然忘了
 
+
+#过了4天...
 
 
 
