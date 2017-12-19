@@ -217,6 +217,8 @@ print(d)
 print();print()
 
 #10.setdefault:感觉和get一样，不设定默认且不存在的话会是None
+#追加: 虽然输出是一眼，其实是不一样的. 如果字典中没有该key的话，setdefault会增加该key，并且把value设置为None或者后面的参数
+#但是如果get只有查询过程,没有增加键值对的过程
 print(d.get('title', 'N/A'))
 print(d.setdefault('title', 'N/A'))
 
