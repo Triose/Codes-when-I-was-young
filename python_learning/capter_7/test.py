@@ -189,4 +189,147 @@ print();print()
 
 #今天到这吧
 
+print();print()
+
+#学校的网真是让人忍无可忍
+#指定超类
+class Filter:
+    def init(self):
+        self.blocked = []
+    
+    def filter(self, sequence):
+        return [x for x in sequence if x not in self.blocked]
+
+class SPAMFilter(Filter):       #超类写在括号里
+    def init(self):
+        self.blocked = ['SPAM']
+
+#Filter是一个用于过滤的通用类,它不会过滤掉任何东西:
+f = Filter()
+f.init()
+print(f.filter([1, 2, 3]))
+
+#SPAMFilter用于过滤'SPAM'字符串
+s = SPAMFilter()
+s.init()
+print(s.filter(['SPAM', 'SPAM', 'SPAM', 'eggs', 'bacon', 'SPMA']))
+#两个要点:
+#SPAMFilter重写了父类Filter中的init函数
+#SPAMFilter中的filter方法是从父类中继承过来的 功能没变所以不需要重写定义
+#   由于可以有很多不同的过滤器 但是它们执行过滤的动作都是一样的 就可以让他们都继承Filter类
+
+print();print()
+
+#检查一个类(B)是否为另一个(A)的子类: issubclass(B, A) 'B is a subclass of A'这么记顺序
+print(issubclass(SPAMFilter, Filter))
+
+#查看一个类的基类(们),可以用__bases__特性:
+print(SPAMFilter.__bases__)
+
+#查看某个实例是否为某个类的实例: isinstance
+print(isinstance(s, SPAMFilter))        #不是个好习惯
+print(isinstance(s, Filter))            #子类的实例同样也是超类的实例
+
+#查看某个对象属于哪一个类, 可以用__class__特性:
+print(s.__class__)
+#如果使用__metaclass__=type或者从object继承的方式来定义新式类,那么可以使用type(s)查看实例所属的类
+
+print();print()
+
+#多继承:C++有但JAVA没有(用接口弥补了一下)
+class Calculator:
+    def calculate(self, expression):
+        self.value = eval(expression)
+
+class Talker:
+    def talk(self):
+        print("Hi my value is", self.value)
+
+class TalkingCalculator(Calculator, Talker):
+    pass
+
+tc = TalkingCalculator()        #既有calculate也有talk方法
+tc.calculate('1+2+3')
+tc.talk()
+
+#多继承需要被谨慎使用 可能会出现很多不可预测的麻烦
+#例如: 如果被超类们之间有重名的方法,先被继承(写在前面)的类会重写后被继承的类的方法
+#如果上例中的Calculator也有talk方法,那么该方法就会重写Talker中的talk 因为先继承Calculate(在括号的中的位置靠前)
+
+print();print()
+
+#接口和内省
+#"接口"的概念与多态有关,即公开的方法和特性
+#Java中的接口显示的规定了实现了某一interface对象必须要有某一方法
+#但是Python中不用, 你直接调用就好了(假定该对象已经实现了你所要求的行为), 如果该方法不存在的话程序就会挂
+
+#可以检查所需特性是否存在!
+print(hasattr(tc, 'talk'))
+
+#也能检查某种特性是否可以被调用!
+#python3之前的版本里有callable函数可以这么用:
+#   callable(getattr(tc, 'talk', 'None'))
+#但是Python3后好像就没了,但是可以用如下替代:
+#用hasattr(atr, '__call__')来替代callable(atr)
+print(hasattr(getattr(tc, 'talk', 'None'), '__call__'))
+
+#与getattr相对的是setattr 用于设置对象的特性.例如:
+def hehe():
+    print("HEHE")
+
+setattr(tc, 'talk', hehe)
+tc.talk()
+
+print();print()
+
+
+#关于面向对象程序设计的思考(我觉得挺有道理的所以全抄下来了)
+#1 将属于一类的对象放在一起。如果一个函数操纵一个全局变量，那么两者最好都在类内作为特征和方法出现
+#2 不要让对象过于亲密。方法应该只关心自己实例的特性。让其他实例管理自己的状态。
+#3 慎用继承，尤其是多继承。虽然继承很有用，不过有时会使得程序过于复杂；多继承难写难调，能要慎用
+#4 简单就好。方法应该尽量小巧实用，并且容易让人理解
+#  (注: 这点无论是在设计模式还是在程序设计竞赛中都有体现--可以看看刘汝佳老师的代码)
+#5 在考虑需要什么类以及类要有什么方法时，应尝试下面的方法:
+    #写下问题的描述(弄清楚程序要做什么),把所有的名词、动词和形容词加下划线
+    #对于所有名词, 用作可能的类
+    #对于所有动词, 用作可能的方法
+    #对于所有形容词, 用作可能的特性
+    #把所有方法和特性分配到类
+    #这样一来就有了 面向对象模型 的草图了。还可以考虑类和对象间的关系(比如继承和协作)以及它们的作用。
+    #然后试着用一下步骤精炼模型:
+        #写下一系列的使用实例，也就是程序应用时的场景，试着包括所有功能
+        #一步步考虑每一个使用实例，保证模型包括所有需要的东西。如果有漏，则添加；如果不正确，则改正。循环到满意为止
+
+#小结:
+#本章的理论特别多 代码几乎没有什么难度
+#所以重点在理论！类、对象、封装、继承、多态、面向对象、设计模式
+#(这些概念都在上文的注释,一下是我自己提的几个问题用于自我反省哈哈哈哈哈哈)
+
+#类是什么?
+
+#对象是什么?
+
+#封装是什么?有什么好处?
+
+#继承是什么?优缺点是什么?
+
+#多态什么?日常生活中的哪些代码体现了多态?
+
+#面向对象的程序设计是什么?有什么好处?具体体现在哪?
+
+#面向过程的程序设计是什么?有什么好处?具体体现在哪?
+
+
+#本章新函数:
+
+#getattr(obj, name[, default])      getter 可附带默认值
+#setattr(obj, name, value)          setter
+#hasattr(obj, name)                 确定对象是否有给定特征
+#isinstance(object, class)          确定obj是否为class的实例
+#issubclass(A, B)                   确定A是否为B的子类
+#random.choice(sequence)            从非空序列中随机选择一个元素
+#type(obj)                          返回对象类型
+
+
+
 
