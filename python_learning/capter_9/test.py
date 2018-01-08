@@ -229,6 +229,7 @@ print();print()
 # EG:
 class Me:
     myname = "Triose"
+    age = 10
     def __init__(self, name):
         self.myname = name
     def __getattribute__(self, name):
@@ -251,4 +252,97 @@ me.gender
 # me.myname = "MICH"
 # del me.myname
 
-# 今天先到这
+# 今天先到这(关于装饰器和拦截器怎么用 先存疑)
+
+print();print()
+
+# 病了几天
+# 迭代器:
+class Fibs:
+    def __init__(self):
+        self.a = 0
+        self.b = 1
+    def __next__(self):
+        self.a, self.b = self.b, self.a + self.b
+        if self.a > 100: raise StopIteration
+        return self.a
+    def __iter__(self):
+        return self
+
+fibs = Fibs()
+for f in fibs:
+    if f < 10:
+        print(f)
+    else: break
+
+print()
+
+# 还可以用list函数把一个可迭代对象显式的转换为list对象
+class TestIterator():
+    def __init__(self):
+        self.value = 0
+    def __next__(self):
+        self.value += 1
+        if self.value > 10: raise StopIteration
+        return self.value
+    def __iter__(self):
+        return self
+
+print(list(TestIterator()))
+
+print();print()
+
+# 生成器
+nested = [[1,2],[3,4],[5]]
+# 如果要按顺序打印nested中的数字:
+def flatten(nested):
+    for i in nested:
+        for j in i:
+            yield(j)
+
+for num in flatten(nested):
+    print(num)
+# 带有yield的函数叫做生成器,每次产生一个值后被冻结然后等待下一次被唤醒
+
+print()
+
+# 展开任意维度的对象:用到了递归 有点难理解 不过每次打印出nested出来就会好理解很多
+def flatten_1(nested):
+    # 排除字符串
+    try:
+        nested + ' '
+    except TypeError: pass
+    else: raise TypeError
+
+    try:
+        for subset in nested:
+            for item in flatten_1(subset):
+                yield(item)
+    except TypeError:
+        yield(nested)
+
+nested = [[1,2,[3, 4, 5]]]
+print(list(flatten_1(nested)))
+
+
+print();print()
+
+def repeater(value):
+    while True:
+        new = (yield value)
+        if new is not None: value = new
+
+r = repeater(42)
+print(r.__next__())
+r.send("hello world")
+print(r.__next__())
+
+# 上面是生成器的使用
+
+print();print()
+
+# 八皇后--见nquene.py
+
+
+
+
