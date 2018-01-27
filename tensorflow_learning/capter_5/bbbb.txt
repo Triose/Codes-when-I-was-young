@@ -1,0 +1,9 @@
+
+The number of layers does not indicates a higher accuracy of one model
+I implement the "example_code" with 2 hidden layer but the result accuracy is about 11% or worst
+I don't understand why this happens 
+I will add an explaination after I figure out it
+
+Answer: MNIST handwrite dataset describes a simple question which does not need a complex nerual network to solve it, as a result, a more complicated nerual network won't equals a more accurate result
+
+
