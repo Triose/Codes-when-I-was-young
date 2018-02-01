@@ -1,0 +1,33 @@
+
+PyQt5 offcial tutorial url: https://pythonspot.com/pyqt5/
+The menu of this dir is as followed:
+
+PyQt5 window
+PyQt5 statusbar
+PyQt5 buttons
+PyQt5 Signals and slots
+PyQt5 messagebox
+PyQt5 textbox
+PyQt5 positioning
+PyQt5 menu
+PyQt5 table
+PyQt5 tabs
+PyQt5 horizontal layout
+PyQt5 grid layout
+PyQt5 input dialogs
+PyQt5 file dialogs
+PyQt5 load image
+PyQt5 drawing and pixels
+PyQt5 color dialog
+PyQt5 colors
+Drag and drop
+PyQt5 font dialog
+PyQt5 matplotlib
+Webkit browser
+PyQt5 complete browser
+PyQt5 treeview
+PyQt5 directory view
+PyQt5 form layout
+PyQt5 box layout
+     
+
