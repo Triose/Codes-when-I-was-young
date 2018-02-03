@@ -1,5 +1,5 @@
-
-PyQt5 offcial tutorial url: https://pythonspot.com/pyqt5/
+All the codes in this direction are copied and edified from the following website
+PyQt5 tutorial url: https://pythonspot.com/pyqt5/
 The menu of this dir is as followed:
 
 PyQt5 window
